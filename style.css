@@ -1,0 +1,566 @@
+/* Reset a základní nastavení */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+    background-attachment: fixed;
+    color: #0c4a6e;
+    min-height: 100vh;
+    padding-bottom: 30px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Sněhový efektivní obal */
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.snowflake {
+    position: absolute;
+    color: #ffffff;
+    font-size: 1.2rem;
+    user-select: none;
+    pointer-events: none;
+    animation: fall linear infinite;
+    text-shadow: 0 0 5px rgba(186, 230, 253, 0.8);
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.2;
+    }
+}
+
+/* MySpace Záhlaví */
+.myspace-header {
+    background: linear-gradient(to right, #0284c7, #38bdf8, #0284c7);
+    color: white;
+    border-bottom: 2px solid #38bdf8;
+    box-shadow: 0 2px 10px rgba(2, 132, 199, 0.3);
+    padding: 10px 0;
+}
+
+.header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: -1px;
+    color: #ffffff;
+    text-shadow: 0 0 8px #7dd3fc;
+}
+
+.logo span {
+    font-size: 1.2rem;
+    color: #e0f2fe;
+}
+
+.search-bar {
+    display: flex;
+    gap: 5px;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border: 1px solid #7dd3fc;
+    border-radius: 12px;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+.search-bar button {
+    padding: 5px 12px;
+    background: #0284c7;
+    color: white;
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.top-nav a {
+    color: #f0f9ff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 0 4px;
+}
+
+.top-nav a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+/* Hlavní Kontejner */
+.container {
+    max-width: 960px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    padding: 0 15px;
+}
+
+/* Levý Sloupec */
+.profile-left {
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    border: 2px solid #7dd3fc;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(186, 230, 253, 0.5);
+}
+
+.profile-card h1 {
+    font-size: 1.4rem;
+    color: #0369a1;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.status-badge {
+    text-align: center;
+    font-style: italic;
+    color: #0284c7;
+    font-weight: bold;
+    margin-bottom: 15px;
+    background: #e0f2fe;
+    padding: 6px;
+    border-radius: 8px;
+    border: 1px dashed #38bdf8;
+}
+
+.avatar-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.avatar-frame {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 10px;
+    background: linear-gradient(135deg, #bae6fd, #e0f2fe);
+    border: 3px solid #38bdf8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+}
+
+.elsa-avatar-graphic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.elsa-avatar-graphic .crown {
+    font-size: 1.8rem;
+    margin-bottom: -10px;
+}
+
+.elsa-avatar-graphic .elsa-emoji {
+    font-size: 2.8rem;
+}
+
+.gender-age {
+    font-size: 0.85rem;
+    color: #0369a1;
+    font-weight: bold;
+}
+
+.online-now {
+    text-align: center;
+    background: #e0f2fe;
+    color: #0284c7;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border: 1px solid #7dd3fc;
+    margin-bottom: 15px;
+}
+
+.blink-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    margin-right: 5px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.action-box {
+    margin-bottom: 20px;
+}
+
+.action-box h3 {
+    font-size: 1rem;
+    color: #0284c7;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #bae6fd;
+    padding-bottom: 4px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sparkle-btn {
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: white;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+    transition: all 0.2s ease;
+}
+
+.sparkle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.5);
+    background: linear-gradient(135deg, #7dd3fc 0%, #0284c7 100%);
+}
+
+.sparkle-btn:active {
+    transform: translateY(0);
+}
+
+/* Top 8 Přátelé */
+.top-friends-box h2 {
+    font-size: 1rem;
+    color: #0369a1;
+    margin-bottom: 4px;
+}
+
+.friends-count {
+    font-size: 0.8rem;
+    color: #0284c7;
+    margin-bottom: 10px;
+}
+
+.friends-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.friend-card {
+    text-align: center;
+}
+
+.friend-avatar {
+    width: 50px;
+    height: 50px;
+    background: #f0f9ff;
+    border: 1px solid #7dd3fc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin: 0 auto 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.friend-card span {
+    font-size: 0.75rem;
+    color: #0369a1;
+    font-weight: bold;
+    display: block;
+    word-break: break-word;
+}
+
+/* Pravý Sloupec */
+.profile-right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.content-box {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border: 2px solid #7dd3fc;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(186, 230, 253, 0.5);
+}
+
+.box-header {
+    background: linear-gradient(to right, #0284c7, #38bdf8);
+    color: white;
+    padding: 8px 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.box-body {
+    padding: 15px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.box-body p {
+    margin-bottom: 8px;
+}
+
+.box-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Přehrávač */
+.music-player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f9ff;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #bae6fd;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-controls button {
+    background: #0284c7;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.visualizer-bars {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+    height: 25px;
+}
+
+.visualizer-bars .bar {
+    width: 6px;
+    background: #38bdf8;
+    height: 6px;
+    border-radius: 3px;
+    transition: height 0.2s ease;
+}
+
+.visualizer-bars.playing .bar {
+    animation: equalize 0.8s infinite alternate ease-in-out;
+}
+
+.visualizer-bars.playing .bar:nth-child(1) { animation-delay: 0.1s; }
+.visualizer-bars.playing .bar:nth-child(2) { animation-delay: 0.3s; }
+.visualizer-bars.playing .bar:nth-child(3) { animation-delay: 0.2s; }
+.visualizer-bars.playing .bar:nth-child(4) { animation-delay: 0.4s; }
+.visualizer-bars.playing .bar:nth-child(5) { animation-delay: 0.15s; }
+
+@keyframes equalize {
+    0% { height: 4px; }
+    100% { height: 24px; }
+}
+
+/* Soundboard */
+.soundboard-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.sound-btn {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    border: 1px solid #38bdf8;
+    color: #0369a1;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.sound-btn:hover {
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: white;
+    transform: scale(1.03);
+}
+
+.sound-btn:active {
+    transform: scale(0.97);
+}
+
+/* Zájmy Tabulka */
+.interests-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.interests-table td {
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px dashed #bae6fd;
+}
+
+.interests-table tr:last-child td {
+    border-bottom: none;
+}
+
+.table-label {
+    font-weight: bold;
+    color: #0284c7;
+    width: 130px;
+}
+
+/* Komentáře */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    background: #f0f9ff;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #bae6fd;
+}
+
+.comment-form input, .comment-form textarea {
+    padding: 8px 12px;
+    border: 1px solid #7dd3fc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-item {
+    display: flex;
+    gap: 12px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #bae6fd;
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    background: #e0f2fe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.comment-content strong {
+    color: #0284c7;
+}
+
+.comment-date {
+    font-size: 0.75rem;
+    color: #0284c7;
+    margin-left: 8px;
+}
+
+.comment-content p {
+    margin-top: 4px;
+    font-size: 0.9rem;
+}
+
+/* Zápatí */
+.myspace-footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #0369a1;
+    font-size: 0.85rem;
+}
+
+/* Kurzorový třpyt (při pohybu myší) */
+.cursor-sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    font-size: 14px;
+    animation: sparkleFade 1s forwards ease-out;
+}
+
+@keyframes sparkleFade {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) translateY(20px);
+    }
+}
+
+/* Responsivita pro mobilní zařízení */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .profile-left {
+        width: 100%;
+    }
+    .friends-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
