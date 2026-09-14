@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySpace - Elza z Ledového Království</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="snow-container"></div>
+
+    <header class="myspace-header">
+        <div class="header-inner">
+            <div class="logo">mySpace<span>.com</span></div>
+            <div class="search-bar">
+                <input type="text" placeholder="Hledat v Arendelle..." readonly>
+                <button>Hledat</button>
+            </div>
+            <nav class="top-nav">
+                <a href="#">Domů</a> |
+                <a href="#">Pošta</a> |
+                <a href="#">Blog</a> |
+                <a href="#">Arendelle síť</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- LEVÝ SLOUPAC -->
+        <aside class="profile-left">
+            <div class="profile-card">
+                <h1>Elza (Královna Zimy)</h1>
+                <div class="status-badge">"Pusť to z hlavy! ❄️✨"</div>
+
+                <div class="avatar-container">
+                    <div class="avatar-frame">
+                        <div class="elsa-avatar-graphic">
+                            <span class="crown">👑</span>
+                            <span class="elsa-emoji">❄️👸🏼❄️</span>
+                        </div>
+                    </div>
+                    <p class="gender-age">Žena, Arendelle & Kouzelný les</p>
+                </div>
+
+                <div class="online-now">
+                    <span class="blink-dot"></span> ELZA JE PROPOJENÁ S MAGIÍ
+                </div>
+
+                <div class="action-box">
+                    <h3>Kontaktovat Elzu</h3>
+                    <div class="action-buttons">
+                        <button id="btn-add-friend" class="sparkle-btn">➕ Přidat do přátel</button>
+                        <button id="btn-cast-spell" class="sparkle-btn">✨ Poslat ledové kouzlo</button>
+                    </div>
+                </div>
+
+                <!-- TOP 8 PŘÁTELÉ -->
+                <div class="top-friends-box">
+                    <h2>Elzini Nejlepší Přátelé (Top 8)</h2>
+                    <p class="friends-count">Elza má <span id="friend-count">888</span> přátel v Arendelle.</p>
+                    <div class="friends-grid">
+                        <div class="friend-card">
+                            <div class="friend-avatar anna">👭</div>
+                            <span>Anna</span>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar olaf">☃️</div>
+                            <span>Olaf</span>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar kristoff">🦌</div>
+                            <span>Kristoff</span>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar sven">🥕</div>
+                            <span>Sven</span>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar nokk">🐴🌊</div>
+                            <span>Nokk</span>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar bruni">🦎🔥</div>
+                            <span>Bruni</span>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar marshmallow">🧊</div>
+                            <span>Marshmallow</span>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar oaken">🏕️</div>
+                            <span>Oaken</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- PRAVÝ SLOUPEC -->
+        <section class="profile-right">
+            <!-- PŘEHRÁVAČ / HUDERBÍ MOTIV -->
+            <div class="content-box music-player-box">
+                <div class="box-header">🎵 Ledový Přehrávač - "Let It Go / Najdi sám sebe"</div>
+                <div class="box-body music-player">
+                    <div class="player-controls">
+                        <button id="btn-play-theme">▶ Přehrát ledovou melodii</button>
+                        <span id="player-status">Zastaveno</span>
+                    </div>
+                    <div class="visualizer-bars">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOUNDBOARD / ZVUKOVÝ PANEL -->
+            <div class="content-box soundboard-box">
+                <div class="box-header">🔊 Zvukový Panel Ledové Magie</div>
+                <div class="box-body">
+                    <p>Klikni na tlačítka a vyzkoušej kouzelné zvuky z Arendelle!</p>
+                    <div class="soundboard-buttons">
+                        <button class="sound-btn" data-sound="ice-sparkle">✨ Ledový Třpyt</button>
+                        <button class="sound-btn" data-sound="frost-wave">❄️ Mrazivá Vlna</button>
+                        <button class="sound-btn" data-sound="crystal-chime">🔔 Křišťálové Zvonky</button>
+                        <button class="sound-btn" data-sound="ice-palace">🏰 Stavba Paláce</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- O MNĚ -->
+            <div class="content-box">
+                <div class="box-header">❄️ O mně</div>
+                <div class="box-body">
+                    <p>Ahoj! Vítám tě na mém MySpace profilu! 👋</p>
+                    <p>Jsem Elza, dříve královna Arendelle a nyní strážkyně Kouzelného lesa jako Pátý Element. Miluji svou sestru Annu, našeho sněhuláka Olafa a všechna mrazivá kouzla, která rozzařují svět.</p>
+                    <p>Ať už je venku zima nebo teplo, pamatuj: <strong>Chlad mi nikdy nevadil! ❄️</strong></p>
+                </div>
+            </div>
+
+            <!-- ZÁJMY -->
+            <div class="content-box">
+                <div class="box-header">💙 Moje Zájmy & Oblíbené věci</div>
+                <div class="box-body">
+                    <table class="interests-table">
+                        <tr>
+                            <td class="table-label">Koníčky:</td>
+                            <td>Tvoření ledových soch, stavění ledových paláců, jízda na Nokkovi, zpěv v Severních horách.</td>
+                        </tr>
+                        <tr>
+                            <td class="table-label">Oblíbená hudba:</td>
+                            <td>"Najdi sám sebe" (Show Yourself), "Najednou" (Let It Go), zvuky větrného ducha Gale.</td>
+                        </tr>
+                        <tr>
+                            <td class="table-label">Oblíbené jídlo:</td>
+                            <td>Čokoláda s Annou 🍫, ledové tříště a teplá polévka po dlouhém dni v mrazu.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- KOMENTÁŘE -->
+            <div class="content-box comments-box">
+                <div class="box-header">💬 Komentáře a Vzkazy (<span id="comments-count">2</span>)</div>
+                <div class="box-body">
+                    <form id="comment-form" class="comment-form">
+                        <input type="text" id="comment-author" placeholder="Tvoje jméno..." required>
+                        <textarea id="comment-text" placeholder="Napiš Elze vzkaz..." rows="2" required></textarea>
+                        <button type="submit" class="sparkle-btn">Poslat vzkaz ❄️</button>
+                    </form>
+
+                    <div id="comments-list" class="comments-list">
+                        <div class="comment-item">
+                            <div class="comment-avatar">👭</div>
+                            <div class="comment-content">
+                                <strong>Anna z Arendelle</strong> <span class="comment-date">Dnes 14:20</span>
+                                <p>Elzo! Nezapomeň, že dnes večer máme rodinnou deskovou hru v paláci! Olaf slíbil, že se nepokusí sníst figurky! 😂❤️</p>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">☃️</div>
+                            <div class="comment-content">
+                                <strong>Olaf</strong> <span class="comment-date">Dnes 12:05</span>
+                                <p>Mám rád vřelá objetí! A taky ledové lízátko, které jsi mi udělala! Děkuju Elzo! ☃️❄️</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="myspace-footer">
+        <p>&copy; 2006-2025 MySpace Arendelle Edition. Vytvořeno pro Elzu z Ledového Království.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
