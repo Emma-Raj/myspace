@@ -3,197 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MySpace - Elza z Ledového Království</title>
+    <title>ArendelleGram | Elza z Ledového Království ❄️</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="snow-container"></div>
 
-    <header class="myspace-header">
+    <!-- HORNÍ NAVIGAČNÍ LIŠTA (INSTAGRAM + MYSPACE HEADER) -->
+    <header class="ig-header">
         <div class="header-inner">
-            <div class="logo">mySpace<span>.com</span></div>
-            <div class="search-bar">
-                <input type="text" placeholder="Hledat v Arendelle..." readonly>
-                <button>Hledat</button>
+            <div class="logo">
+                <i class="fa-solid fa-snowflake logo-icon"></i>
+                <span class="logo-text">ArendelleGram</span>
+                <span class="myspace-badge">MySpace Edition</span>
             </div>
-            <nav class="top-nav">
-                <a href="#">Domů</a> |
-                <a href="#">Pošta</a> |
-                <a href="#">Blog</a> |
-                <a href="#">Arendelle síť</a>
+
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Hledat v Arendelle a Kouzelném lese..." readonly>
+            </div>
+
+            <nav class="top-nav-icons">
+                <button class="nav-icon-btn active" title="Domů"><i class="fa-solid fa-house"></i></button>
+                <button class="nav-icon-btn" id="btn-open-music" title="Ledový Přehrávač"><i class="fa-solid fa-music"></i></button>
+                <button class="nav-icon-btn" id="btn-open-soundboard" title="Zvukový Panel"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                <button class="nav-icon-btn" id="btn-cast-spell-nav" title="Poslat ledové kouzlo"><i class="fa-solid fa-snowflake"></i></button>
             </nav>
         </div>
     </header>
 
+    <!-- HLAVNÍ OBSAHOVÁ OBLAST -->
     <main class="container">
-        <!-- LEVÝ SLOUPAC -->
-        <aside class="profile-left">
-            <div class="profile-card">
-                <h1>Elza (Královna Zimy)</h1>
-                <div class="status-badge">"Pusť to z hlavy! ❄️✨"</div>
 
-                <div class="avatar-container">
-                    <div class="avatar-frame">
-                        <div class="elsa-avatar-graphic">
-                            <span class="crown">👑</span>
-                            <span class="elsa-emoji">❄️👸🏼❄️</span>
-                        </div>
+        <!-- PROFILOVÁ HLAVIČKA (INSTAGRAM HEADER STYLE) -->
+        <section class="profile-header-card">
+            <div class="profile-main-info">
+                <!-- PROFILOVÁ FOTKA A RÁMEČEK -->
+                <div class="avatar-story-wrapper">
+                    <div class="avatar-ring">
+                        <img id="elsa-main-avatar" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500" alt="Elza profilová fotka" class="profile-avatar-img">
                     </div>
-                    <p class="gender-age">Žena, Arendelle & Kouzelný les</p>
+                    <span class="online-indicator" title="Elza je propojená s magií">⚡</span>
                 </div>
 
-                <div class="online-now">
-                    <span class="blink-dot"></span> ELZA JE PROPOJENÁ S MAGIÍ
-                </div>
-
-                <div class="action-box">
-                    <h3>Kontaktovat Elzu</h3>
-                    <div class="action-buttons">
-                        <button id="btn-add-friend" class="sparkle-btn">➕ Přidat do přátel</button>
-                        <button id="btn-cast-spell" class="sparkle-btn">✨ Poslat ledové kouzlo</button>
-                    </div>
-                </div>
-
-                <!-- TOP 8 PŘÁTELÉ -->
-                <div class="top-friends-box">
-                    <h2>Elzini Nejlepší Přátelé (Top 8)</h2>
-                    <p class="friends-count">Elza má <span id="friend-count">888</span> přátel v Arendelle.</p>
-                    <div class="friends-grid">
-                        <div class="friend-card">
-                            <div class="friend-avatar anna">👭</div>
-                            <span>Anna</span>
-                        </div>
-                        <div class="friend-card">
-                            <div class="friend-avatar olaf">☃️</div>
-                            <span>Olaf</span>
-                        </div>
-                        <div class="friend-card">
-                            <div class="friend-avatar kristoff">🦌</div>
-                            <span>Kristoff</span>
-                        </div>
-                        <div class="friend-card">
-                            <div class="friend-avatar sven">🥕</div>
-                            <span>Sven</span>
-                        </div>
-                        <div class="friend-card">
-                            <div class="friend-avatar nokk">🐴🌊</div>
-                            <span>Nokk</span>
-                        </div>
-                        <div class="friend-card">
-                            <div class="friend-avatar bruni">🦎🔥</div>
-                            <span>Bruni</span>
-                        </div>
-                        <div class="friend-card">
-                            <div class="friend-avatar marshmallow">🧊</div>
-                            <span>Marshmallow</span>
-                        </div>
-                        <div class="friend-card">
-                            <div class="friend-avatar oaken">🏕️</div>
-                            <span>Oaken</span>
+                <!-- DETAILY PROFILU & STATISTIKY -->
+                <div class="profile-details">
+                    <div class="profile-title-row">
+                        <h1 class="username">elza_queen_of_ice <i class="fa-solid fa-circle-check verified-badge" title="Ověřený profil Arendelle"></i></h1>
+                        <div class="action-buttons">
+                            <button id="btn-add-friend" class="ig-btn ig-btn-primary"><i class="fa-solid fa-user-plus"></i> Přidat do přátel</button>
+                            <button id="btn-cast-spell" class="ig-btn ig-btn-secondary"><i class="fa-solid fa-wand-magic-sparkles"></i> Ledové kouzlo</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </aside>
 
-        <!-- PRAVÝ SLOUPEC -->
-        <section class="profile-right">
-            <!-- PŘEHRÁVAČ / HUDERBÍ MOTIV -->
-            <div class="content-box music-player-box">
-                <div class="box-header">🎵 Ledový Přehrávač - "Let It Go / Najdi sám sebe"</div>
-                <div class="box-body music-player">
-                    <div class="player-controls">
-                        <button id="btn-play-theme">▶ Přehrát ledovou melodii</button>
-                        <span id="player-status">Zastaveno</span>
+                    <div class="profile-stats">
+                        <div class="stat-item"><strong id="post-count">6</strong> příspěvků</div>
+                        <div class="stat-item"><strong id="friend-count">888</strong> přátel v Arendelle</div>
+                        <div class="stat-item"><strong>Pátý Element</strong> Kouzelného lesa</div>
                     </div>
-                    <div class="visualizer-bars">
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
+
+                    <div class="profile-bio">
+                        <h2>Elza ❄️ Královna Zimy</h2>
+                        <span class="bio-tag">Dříve královna Arendelle • Strážkyně Kouzelného lesa 🌲✨</span>
+                        <p class="bio-quote">"Pusť to z hlavy! Chlad mi nikdy nevadil. 💙"</p>
+                        <p class="bio-description">
+                            Miluji tvoření ledových soch, jízdu na vodním duchovi Nokkovi a chvíle strávené se sestrou Annou, Olafem a přáteli.
+                        </p>
+                        <a href="#" class="bio-link"><i class="fa-solid fa-link"></i> arendelle.gov/elsa-magic</a>
                     </div>
                 </div>
             </div>
 
-            <!-- SOUNDBOARD / ZVUKOVÝ PANEL -->
-            <div class="content-box soundboard-box">
-                <div class="box-header">🔊 Zvukový Panel Ledové Magie</div>
-                <div class="box-body">
-                    <p>Klikni na tlačítka a vyzkoušej kouzelné zvuky z Arendelle!</p>
-                    <div class="soundboard-buttons">
-                        <button class="sound-btn" data-sound="ice-sparkle">✨ Ledový Třpyt</button>
-                        <button class="sound-btn" data-sound="frost-wave">❄️ Mrazivá Vlna</button>
-                        <button class="sound-btn" data-sound="crystal-chime">🔔 Křišťálové Zvonky</button>
-                        <button class="sound-btn" data-sound="ice-palace">🏰 Stavba Paláce</button>
+            <!-- HIGHLIGHTS / ZÁLOŽKY SEKCÍ (STORY HIGHLIGHTS) -->
+            <div class="highlights-section">
+                <h3 class="highlights-title">Výběr příběhů & Témata ❄️</h3>
+                <div class="highlights-container">
+
+                    <div class="highlight-item" data-story="recipes">
+                        <div class="highlight-ring">
+                            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500" alt="Ledové recepty">
+                        </div>
+                        <span class="highlight-label">🍦 Recepty</span>
                     </div>
+
+                    <div class="highlight-item" data-story="snowboard">
+                        <div class="highlight-ring">
+                            <img src="https://images.unsplash.com/photo-1522056615691-da7b8106c665?w=500" alt="Triky na snowboardu">
+                        </div>
+                        <span class="highlight-label">🏂 Snowboard</span>
+                    </div>
+
+                    <div class="highlight-item" data-story="coldwater">
+                        <div class="highlight-ring">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Příručka k otužování">
+                        </div>
+                        <span class="highlight-label">🧊 Otužování</span>
+                    </div>
+
+                    <div class="highlight-item" data-story="music">
+                        <div class="highlight-ring highlight-music">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <span class="highlight-label">🎵 Melodie</span>
+                    </div>
+
+                    <div class="highlight-item" data-story="sounds">
+                        <div class="highlight-ring highlight-sounds">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <span class="highlight-label">🔊 Zvuky</span>
+                    </div>
+
                 </div>
             </div>
 
-            <!-- O MNĚ -->
-            <div class="content-box">
-                <div class="box-header">❄️ O mně</div>
-                <div class="box-body">
-                    <p>Ahoj! Vítám tě na mém MySpace profilu! 👋</p>
-                    <p>Jsem Elza, dříve královna Arendelle a nyní strážkyně Kouzelného lesa jako Pátý Element. Miluji svou sestru Annu, našeho sněhuláka Olafa a všechna mrazivá kouzla, která rozzařují svět.</p>
+            <!-- TOP 8 PŘÁTELÉ SEKCÍ -->
+            <div class="top-friends-instagram-box">
+                <div class="friends-header">
+                    <h3><i class="fa-solid fa-users"></i> Nejlepší Přátelé (Top 8)</h3>
+                    <span class="friends-sub">Kliknutím na přítele otevřeš jeho MySpace profil</span>
+                </div>
+
+                <div class="friends-scroll-grid" id="friends-grid">
+                    <!-- Načte se dynamically z JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCÍ PŘEPÍNAČ TAZ (POSTS / VIDEOS / ABOUT / COMMENTS) -->
+        <section class="tabs-navigation">
+            <button class="tab-btn active" data-tab="tab-feed">
+                <i class="fa-solid fa-table-cells"></i> FOTOGALERIE
+            </button>
+            <button class="tab-btn" data-tab="tab-videos">
+                <i class="fa-solid fa-clapperboard"></i> VIDEA & KLIPY
+            </button>
+            <button class="tab-btn" data-tab="tab-about">
+                <i class="fa-solid fa-address-card"></i> O MNĚ & ZÁJMY
+            </button>
+            <button class="tab-btn" data-tab="tab-comments">
+                <i class="fa-solid fa-comments"></i> VZKAZOVNÍK (<span id="comments-count">2</span>)
+            </button>
+        </section>
+
+        <!-- TAB CONTENT 1: FOTOGALERIE / INSTAGRAM FEED -->
+        <div class="tab-content active" id="tab-feed">
+            <div class="ig-posts-grid">
+
+                <div class="ig-post-card">
+                    <div class="post-header">
+                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500" alt="Elza" class="post-user-avatar">
+                        <div class="post-user-info">
+                            <strong>elza_queen_of_ice</strong>
+                            <span>Severní Hory • Kouzelný Les</span>
+                        </div>
+                    </div>
+                    <div class="post-media">
+                        <img src="https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=500" alt="Ledový palác v Severních horách">
+                    </div>
+                    <div class="post-actions">
+                        <button class="like-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="comment-btn"><i class="fa-regular fa-comment"></i></button>
+                        <button class="share-btn"><i class="fa-regular fa-paper-plane"></i></button>
+                    </div>
+                    <div class="post-likes"><strong class="like-count">1,420</strong> to se líbí</div>
+                    <div class="post-caption">
+                        <strong>elza_queen_of_ice</strong> Dnešní ráno v Severních horách! Ledové krystaly svítí jako déšť diamantů. ❄️✨
+                    </div>
+                </div>
+
+                <div class="ig-post-card">
+                    <div class="post-header">
+                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500" alt="Elza" class="post-user-avatar">
+                        <div class="post-user-info">
+                            <strong>elza_queen_of_ice</strong>
+                            <span>Arendelle Castle</span>
+                        </div>
+                    </div>
+                    <div class="post-media">
+                        <img src="https://images.unsplash.com/photo-1483664852095-d6cc6870702d?w=500" alt="Ledové království">
+                    </div>
+                    <div class="post-actions">
+                        <button class="like-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="comment-btn"><i class="fa-regular fa-comment"></i></button>
+                        <button class="share-btn"><i class="fa-regular fa-paper-plane"></i></button>
+                    </div>
+                    <div class="post-likes"><strong class="like-count">2,850</strong> to se líbí</div>
+                    <div class="post-caption">
+                        <strong>elza_queen_of_ice</strong> Večerní bruslení na zmrzlém fjordu s Annou a Olafem. Nezapomenutelný večer! ⛸️💙
+                    </div>
+                </div>
+
+                <div class="ig-post-card">
+                    <div class="post-header">
+                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500" alt="Elza" class="post-user-avatar">
+                        <div class="post-user-info">
+                            <strong>elza_queen_of_ice</strong>
+                            <span>Řeka Ahtohallan</span>
+                        </div>
+                    </div>
+                    <div class="post-media">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Nokk a ledová voda">
+                    </div>
+                    <div class="post-actions">
+                        <button class="like-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="comment-btn"><i class="fa-regular fa-comment"></i></button>
+                        <button class="share-btn"><i class="fa-regular fa-paper-plane"></i></button>
+                    </div>
+                    <div class="post-likes"><strong class="like-count">3,910</strong> to se líbí</div>
+                    <div class="post-caption">
+                        <strong>elza_queen_of_ice</strong> Projížďka na Nokkovi po ledové hladině Ahtohallanu. Cítím ten mrazivý klid v duši. 🌊🐴❄️
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TAB CONTENT 2: VIDEA A KLIPY -->
+        <div class="tab-content" id="tab-videos">
+            <div class="video-section-header">
+                <h3><i class="fa-solid fa-clapperboard"></i> Ledová Videa & Klipy z Arendelle</h3>
+                <p>Sleduj videa z mrazivých dobrodružství, snowboardingu a Kouzelného lesa!</p>
+            </div>
+
+            <div class="videos-grid">
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls poster="https://images.unsplash.com/photo-1522056615691-da7b8106c665?w=500">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                            Váš prohlížeč nepodporuje přehrávání videa.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h4>🏂 Mrazivé Snowboardové Triky v Severních Horách</h4>
+                        <p>Když Elza spojí ledové kouzlo s jízdou na snowboardu! Podívej se na skoky a freeride.</p>
+                        <div class="video-meta"><i class="fa-solid fa-eye"></i> 12,450 zhlédnutí • Před 2 dny</div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500">
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                            Váš prohlížeč nepodporuje přehrávání videa.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h4>🧊 Příručka k Otužování & Plavání ve Fjordu</h4>
+                        <p>Video ukázka správného dýchání a ponoření do ledové vody Arendelle s Elzou a Kristoffem.</p>
+                        <div class="video-meta"><i class="fa-solid fa-eye"></i> 8,920 zhlédnutí • Před 5 dny</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TAB CONTENT 3: O MNĚ & ZÁJMY -->
+        <div class="tab-content" id="tab-about">
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3><i class="fa-solid fa-snowflake"></i> O mně</h3>
+                    <p>Ahoj! Vítám tě na mém oficiálním moderním ArendelleGram profilu! 👋</p>
+                    <p>Jsem Elza, dříve královna Arendelle a nyní strážkyně Kouzelného lesa jako Pátý Element. Mé srdce patří mé milované sestře Anně, sněhuláku Olafovi a všem lidem i bytostem z Arendelle a lesa.</p>
                     <p>Ať už je venku zima nebo teplo, pamatuj: <strong>Chlad mi nikdy nevadil! ❄️</strong></p>
                 </div>
-            </div>
 
-            <!-- ZÁJMY -->
-            <div class="content-box">
-                <div class="box-header">💙 Moje Zájmy & Oblíbené věci</div>
-                <div class="box-body">
+                <div class="about-card">
+                    <h3><i class="fa-solid fa-star"></i> Zájmy & Záliby</h3>
                     <table class="interests-table">
                         <tr>
-                            <td class="table-label">Koníčky:</td>
-                            <td>Tvoření ledových soch, stavění ledových paláců, jízda na Nokkovi, zpěv v Severních horách.</td>
+                            <td class="table-label"><i class="fa-solid fa-heart"></i> Koníčky:</td>
+                            <td>Tvoření ledových soch, stavění paláců, snowboarding, jízda na Nokkovi, zpěv v Severních horách.</td>
                         </tr>
                         <tr>
-                            <td class="table-label">Oblíbená hudba:</td>
-                            <td>"Najdi sám sebe" (Show Yourself), "Najednou" (Let It Go), zvuky větrného ducha Gale.</td>
+                            <td class="table-label"><i class="fa-solid fa-music"></i> Oblíbená hudba:</td>
+                            <td>"Najdi sám sebe" (Show Yourself), "Najednou" (Let It Go), symfonie větrného ducha Gale.</td>
                         </tr>
                         <tr>
-                            <td class="table-label">Oblíbené jídlo:</td>
-                            <td>Čokoláda s Annou 🍫, ledové tříště a teplá polévka po dlouhém dni v mrazu.</td>
+                            <td class="table-label"><i class="fa-solid fa-utensils"></i> Oblíbené jídlo:</td>
+                            <td>Čokoláda s Annou 🍫, ledové smetanové poháry, horké kakao se skořicí.</td>
                         </tr>
                     </table>
                 </div>
             </div>
+        </div>
 
-            <!-- KOMENTÁŘE -->
-            <div class="content-box comments-box">
-                <div class="box-header">💬 Komentáře a Vzkazy (<span id="comments-count">2</span>)</div>
-                <div class="box-body">
-                    <form id="comment-form" class="comment-form">
+        <!-- TAB CONTENT 4: KOMENTÁŘE A VZKAZY -->
+        <div class="tab-content" id="tab-comments">
+            <div class="comments-section">
+                <h3><i class="fa-solid fa-comments"></i> Napiš Elze vzkaz do Arendelle</h3>
+
+                <form id="comment-form" class="comment-form">
+                    <div class="form-row">
                         <input type="text" id="comment-author" placeholder="Tvoje jméno..." required>
-                        <textarea id="comment-text" placeholder="Napiš Elze vzkaz..." rows="2" required></textarea>
-                        <button type="submit" class="sparkle-btn">Poslat vzkaz ❄️</button>
-                    </form>
-
-                    <div id="comments-list" class="comments-list">
-                        <div class="comment-item">
-                            <div class="comment-avatar">👭</div>
-                            <div class="comment-content">
-                                <strong>Anna z Arendelle</strong> <span class="comment-date">Dnes 14:20</span>
-                                <p>Elzo! Nezapomeň, že dnes večer máme rodinnou deskovou hru v paláci! Olaf slíbil, že se nepokusí sníst figurky! 😂❤️</p>
-                            </div>
-                        </div>
-                        <div class="comment-item">
-                            <div class="comment-avatar">☃️</div>
-                            <div class="comment-content">
-                                <strong>Olaf</strong> <span class="comment-date">Dnes 12:05</span>
-                                <p>Mám rád vřelá objetí! A taky ledové lízátko, které jsi mi udělala! Děkuju Elzo! ☃️❄️</p>
-                            </div>
-                        </div>
                     </div>
+                    <div class="form-row">
+                        <textarea id="comment-text" placeholder="Napiš mrazivý vzkaz nebo pozdrav pro Elzu..." rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="ig-btn ig-btn-primary"><i class="fa-solid fa-paper-plane"></i> Poslat vzkaz ❄️</button>
+                </form>
+
+                <div id="comments-list" class="comments-list">
+                    <!-- Načte se dynamically / předem připraveno -->
                 </div>
             </div>
-        </section>
+        </div>
+
     </main>
 
-    <footer class="myspace-footer">
-        <p>&copy; 2006-2025 MySpace Arendelle Edition. Vytvořeno pro Elzu z Ledového Království.</p>
+    <!-- MODÁLNÍ OKNO PRO PŘÁTELE (DETAILNÍ MYSPACE PROFIL PŘÍTELKYNĚ / PŘÍTELE) -->
+    <div id="friend-modal" class="modal-overlay hidden">
+        <div class="modal-container friend-modal-box">
+            <button class="modal-close-btn" id="close-friend-modal">&times;</button>
+
+            <div class="friend-modal-header">
+                <div class="friend-modal-avatar-wrapper">
+                    <img id="modal-friend-avatar" src="" alt="Avatar přítele">
+                </div>
+                <div class="friend-modal-title">
+                    <h2 id="modal-friend-name">Jméno Přátele</h2>
+                    <span id="modal-friend-role" class="friend-role-badge">Role / Titul</span>
+                    <p id="modal-friend-status" class="friend-status-text">"Status..."</p>
+                </div>
+            </div>
+
+            <div class="friend-modal-body">
+                <div class="modal-section">
+                    <h4><i class="fa-solid fa-user"></i> Představení</h4>
+                    <p id="modal-friend-bio">Bio...</p>
+                </div>
+
+                <div class="modal-section">
+                    <h4><i class="fa-solid fa-heart"></i> Záliby & Co má rád/a</h4>
+                    <p id="modal-friend-interests">Zájmy...</p>
+                </div>
+
+                <div class="modal-section">
+                    <h4><i class="fa-solid fa-quote-left"></i> Vzkaz pro Elzu</h4>
+                    <p id="modal-friend-quote" class="friend-quote-box">"Vzkaz..."</p>
+                </div>
+            </div>
+
+            <div class="friend-modal-footer">
+                <button class="ig-btn ig-btn-primary" id="btn-friend-wave"><i class="fa-solid fa-hand-wave"></i> Zamávat příteli 🖐️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO PRO STORY HIGHLIGHTS (RECEPES, SNOWBOARD, COLD WATER) -->
+    <div id="story-modal" class="modal-overlay hidden">
+        <div class="modal-container story-modal-box">
+            <button class="modal-close-btn" id="close-story-modal">&times;</button>
+
+            <div class="story-modal-header">
+                <div class="story-icon-badge" id="story-modal-icon">🍨</div>
+                <h2 id="story-modal-title">Název Příběhu</h2>
+            </div>
+
+            <div class="story-modal-body" id="story-modal-content">
+                <!-- Dynamický obsah načítaný z JS podle výběru -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO PRO PŘEHRÁVAČ A ZVUKOVÝ PANEL (INTERAKTIVNÍ POPUPY) -->
+    <div id="music-modal" class="modal-overlay hidden">
+        <div class="modal-container music-modal-box">
+            <button class="modal-close-btn" id="close-music-modal">&times;</button>
+
+            <h3><i class="fa-solid fa-music"></i> Ledový Přehrávač Arendelle</h3>
+            <p>Poslouchej ledové melodie přímo z paláce!</p>
+
+            <div class="music-player-widget">
+                <button id="btn-play-theme" class="ig-btn ig-btn-primary"><i class="fa-solid fa-play"></i> Přehrát ledovou melodii</button>
+                <span id="player-status" class="player-status">Zastaveno</span>
+
+                <div class="visualizer-bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="soundboard-modal" class="modal-overlay hidden">
+        <div class="modal-container soundboard-modal-box">
+            <button class="modal-close-btn" id="close-soundboard-modal">&times;</button>
+
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Zvukový Panel Ledové Magie</h3>
+            <p>Vyzkoušej kouzelné zvuky z Arendelle!</p>
+
+            <div class="soundboard-buttons">
+                <button class="sound-btn" data-sound="ice-sparkle"><i class="fa-solid fa-sparkles"></i> ✨ Ledový Třpyt</button>
+                <button class="sound-btn" data-sound="frost-wave"><i class="fa-solid fa-wind"></i> ❄️ Mrazivá Vlna</button>
+                <button class="sound-btn" data-sound="crystal-chime"><i class="fa-solid fa-bell"></i> 🔔 Křišťálové Zvonky</button>
+                <button class="sound-btn" data-sound="ice-palace"><i class="fa-solid fa-chess-rook"></i> 🏰 Stavba Paláce</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ZÁPATÍ -->
+    <footer class="ig-footer">
+        <div class="footer-inner">
+            <p>&copy; 2006-2025 ArendelleGram / MySpace. Vytvořeno pro Elzu z Ledového Království. ✨❄️</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
