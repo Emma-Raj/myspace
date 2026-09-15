@@ -170,6 +170,71 @@ body {
     padding: 0 20px;
 }
 
+/* URGENT NEWS CARD */
+.urgent-news-card {
+    background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+    border: 2px solid #f43f5e;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(244, 63, 94, 0.25);
+}
+
+.urgent-news-header {
+    margin-bottom: 15px;
+}
+
+.urgent-badge {
+    display: inline-block;
+    background: #e11d48;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    animation: pulseBadge 1.5s infinite;
+}
+
+@keyframes pulseBadge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.urgent-news-header h2 {
+    color: #881337;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.urgent-video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.urgent-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.urgent-description {
+    font-size: 0.95rem;
+    color: #9f1239;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
 /* PROFILOVÁ HLAVIČKA */
 .profile-header-card {
     background: var(--card-bg);
@@ -393,7 +458,7 @@ body {
     border: 2px solid #ffffff;
 }
 
-.highlight-music, .highlight-sounds {
+.highlight-music, .highlight-sounds, .highlight-game {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -663,6 +728,21 @@ body {
     width: 100%;
     max-height: 280px;
     display: block;
+}
+
+.video-iframe-wrapper {
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .video-info {
@@ -993,6 +1073,344 @@ body {
     font-size: 0.85rem;
     line-height: 1.4;
     margin-bottom: 4px;
+}
+
+/* SNOWSTORM ESCAPE GAME STYLES */
+.escape-modal-box {
+    max-width: 560px;
+}
+
+.escape-game-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.escape-stats-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: var(--soft-ice);
+    border: 1px solid var(--border-blue);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+}
+
+.escape-canvas-container {
+    position: relative;
+    width: 480px;
+    height: 240px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid var(--light-blue);
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+    background: #0284c7;
+}
+
+#escape-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #0284c7 0%, #38bdf8 60%, #e0f2fe 100%);
+}
+
+.game-overlay-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 105, 161, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    gap: 10px;
+}
+
+.game-overlay-screen.hidden {
+    display: none;
+}
+
+.game-overlay-screen h3 {
+    font-size: 1.3rem;
+}
+
+.game-overlay-screen p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.escape-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.jump-big-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+/* GAME MODALS & BURGER GAME STYLES */
+.game-modal-box {
+    max-width: 580px;
+}
+
+.game-modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-blue);
+}
+
+.game-modal-header h2 {
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+}
+
+.game-modal-header p {
+    font-size: 0.85rem;
+    color: var(--primary-blue);
+}
+
+.burger-game-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.burger-plate-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%);
+    border: 2px dashed var(--light-blue);
+    border-radius: 16px;
+    padding: 20px 10px;
+    min-height: 220px;
+    box-shadow: inset 0 2px 8px rgba(2, 132, 199, 0.15);
+}
+
+.burger-plate {
+    width: 240px;
+    background: #ffffff;
+    border: 4px solid #bae6fd;
+    border-radius: 50%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    min-height: 180px;
+    justify-content: flex-start;
+}
+
+.burger-stack {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+    gap: 2px;
+}
+
+.burger-layer {
+    width: 180px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    animation: dropLayer 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes dropLayer {
+    0% { transform: translateY(-30px) scale(0.9); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.layer-bottom-bun {
+    background: linear-gradient(135deg, #7dd3fc, #0284c7);
+    border-radius: 4px 4px 16px 16px;
+    width: 190px;
+}
+
+.layer-top-bun {
+    background: linear-gradient(135deg, #38bdf8, #0369a1);
+    border-radius: 20px 20px 6px 6px;
+    width: 190px;
+}
+
+.layer-patty {
+    background: linear-gradient(135deg, #0284c7, #1e3a8a);
+    border-radius: 8px;
+    width: 175px;
+}
+
+.layer-cheese {
+    background: linear-gradient(135deg, #38bdf8, #60a5fa);
+    color: #0c4a6e;
+    border-radius: 4px;
+    width: 185px;
+}
+
+.layer-pickle {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border-radius: 6px;
+    width: 165px;
+}
+
+.layer-icicle {
+    background: linear-gradient(135deg, #e0f2fe, #7dd3fc);
+    color: #0369a1;
+    border-radius: 4px;
+    width: 170px;
+}
+
+.layer-sauce {
+    background: rgba(255, 255, 255, 0.95);
+    color: #0284c7;
+    border: 1px solid #7dd3fc;
+    border-radius: 10px;
+    width: 160px;
+}
+
+.burger-controls {
+    width: 100%;
+}
+
+.ingredient-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.ingredient-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.ing-btn {
+    background: var(--soft-ice);
+    border: 1px solid var(--border-blue);
+    color: var(--dark-blue);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ing-btn:hover {
+    background: var(--light-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.burger-action-btns {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.burger-result {
+    background: var(--soft-ice);
+    border: 2px solid var(--light-blue);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark-blue);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease;
+}
+
+/* BACKGROUND MUSIC FLOATING BAR */
+.bg-music-floating-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9900;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--light-blue);
+    border-radius: 30px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.25);
+    animation: slideUpBar 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUpBar {
+    0% { transform: translateY(60px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.music-info-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--dark-blue);
+}
+
+.music-disc-icon {
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+}
+
+.bg-music-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.youtube-audio-iframe-container {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.yt-embed-box {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.yt-embed-box iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    display: block;
 }
 
 /* MUSIC & SOUNDBOARD MODALS */

@@ -26,6 +26,8 @@
 
             <nav class="top-nav-icons">
                 <button class="nav-icon-btn active" title="Domů"><i class="fa-solid fa-house"></i></button>
+                <button class="nav-icon-btn" id="btn-open-burger-game" title="Hra: Ledový Burger">🍔</button>
+                <button class="nav-icon-btn" id="btn-open-escape-game" title="Hra: Útěk z Vánice">🏃‍♀️</button>
                 <button class="nav-icon-btn" id="btn-open-music" title="Ledový Přehrávač"><i class="fa-solid fa-music"></i></button>
                 <button class="nav-icon-btn" id="btn-open-soundboard" title="Zvukový Panel"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 <button class="nav-icon-btn" id="btn-cast-spell-nav" title="Poslat ledové kouzlo"><i class="fa-solid fa-snowflake"></i></button>
@@ -115,6 +117,20 @@
                         <span class="highlight-label">🔊 Zvuky</span>
                     </div>
 
+                    <div class="highlight-item" id="highlight-burger-game">
+                        <div class="highlight-ring highlight-game">
+                            🍔
+                        </div>
+                        <span class="highlight-label">🍔 Burger</span>
+                    </div>
+
+                    <div class="highlight-item" id="highlight-escape-game">
+                        <div class="highlight-ring highlight-game">
+                            ❄️
+                        </div>
+                        <span class="highlight-label">🏃‍♀️ Útěk</span>
+                    </div>
+
                 </div>
             </div>
 
@@ -129,6 +145,20 @@
                     <!-- Načte se dynamically z JS -->
                 </div>
             </div>
+        </section>
+
+        <!-- BLESKOVÁ ZPRÁVA / OBROVSKÁ AKTUALITA -->
+        <section class="urgent-news-card">
+            <div class="urgent-news-header">
+                <span class="urgent-badge">🚨 BLESKOVÁ ZPRÁVA Z ARENDELLE</span>
+                <h2>😱 OBROVSKÁ AKTUALITA: Elzu v Severních Horách honí MEDVĚD!</h2>
+            </div>
+            <div class="urgent-video-container">
+                <iframe src="https://www.youtube.com/embed/vT_PNKg3v7s" title="Elzu honí medvěd" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="urgent-description">
+                ❄️ Dramatické záběry přímo z Kouzelného lesa! Podívej se, jak Elza musela použít své mrazivé schopnosti při nečekaném setkání s obřím medvědem!
+            </p>
         </section>
 
         <!-- SEKCÍ PŘEPÍNAČ TAZ (POSTS / VIDEOS / ABOUT / COMMENTS) -->
@@ -223,37 +253,31 @@
         <!-- TAB CONTENT 2: VIDEA A KLIPY -->
         <div class="tab-content" id="tab-videos">
             <div class="video-section-header">
-                <h3><i class="fa-solid fa-clapperboard"></i> Ledová Videa & Klipy z Arendelle</h3>
-                <p>Sleduj videa z mrazivých dobrodružství, snowboardingu a Kouzelného lesa!</p>
+                <h3><i class="fa-solid fa-clapperboard"></i> Ledová Videa & Snowboardové Klipy z Arendelle</h3>
+                <p>Sleduj reálná videa mrazivého snowboardingu, skoků na prkně a zimních dobrodružství!</p>
             </div>
 
             <div class="videos-grid">
 
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <video controls poster="https://images.unsplash.com/photo-1522056615691-da7b8106c665?w=500">
-                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-                            Váš prohlížeč nepodporuje přehrávání videa.
-                        </video>
+                    <div class="video-wrapper video-iframe-wrapper">
+                        <iframe src="https://www.youtube.com/embed/vN8k39A2H4U" title="Snowboarding v prachovém sněhu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
-                        <h4>🏂 Mrazivé Snowboardové Triky v Severních Horách</h4>
-                        <p>Když Elza spojí ledové kouzlo s jízdou na snowboardu! Podívej se na skoky a freeride.</p>
-                        <div class="video-meta"><i class="fa-solid fa-eye"></i> 12,450 zhlédnutí • Před 2 dny</div>
+                        <h4>🏂 Mrazivé Snowboardové Triky & Freeride v Severních Horách</h4>
+                        <p>Elzina extrémní jízda v prachovém sněhu na zasněžených svazích Arendelle! Adrenalinové skoky a rotace.</p>
+                        <div class="video-meta"><i class="fa-solid fa-eye"></i> 24,850 zhlédnutí • Před 2 dny</div>
                     </div>
                 </div>
 
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <video controls poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500">
-                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                            Váš prohlížeč nepodporuje přehrávání videa.
-                        </video>
+                    <div class="video-wrapper video-iframe-wrapper">
+                        <iframe src="https://www.youtube.com/embed/m4L3A8Bvh1w" title="Snowboard skoky a triky" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
-                        <h4>🧊 Příručka k Otužování & Plavání ve Fjordu</h4>
-                        <p>Video ukázka správného dýchání a ponoření do ledové vody Arendelle s Elzou a Kristoffem.</p>
-                        <div class="video-meta"><i class="fa-solid fa-eye"></i> 8,920 zhlédnutí • Před 5 dny</div>
+                        <h4>❄️ Extreme Snowboard Slopestyle & Ledový Snowpark</h4>
+                        <p>Perfektní rovnováha na ledové rail kolejničce a masivní skoky v podání Elzy a týmu horských jezdkyň.</p>
+                        <div class="video-meta"><i class="fa-solid fa-eye"></i> 18,920 zhlédnutí • Před 4 dny</div>
                     </div>
                 </div>
 
@@ -368,24 +392,44 @@
         </div>
     </div>
 
+    <!-- HUDOSBNÍ PŘEHRÁVAČ V POZADÍ (STICKY BOTTTOM / TOP BAR) -->
+    <div class="bg-music-floating-bar" id="bg-music-bar">
+        <div class="music-info-text">
+            <i class="fa-solid fa-compact-disc fa-spin music-disc-icon"></i>
+            <span><strong>Hudba na pozadí:</strong> Oficiální Arendelle soundtrack 🎵</span>
+        </div>
+        <div class="bg-music-controls">
+            <button id="btn-toggle-bg-music" class="ig-btn ig-btn-primary"><i class="fa-solid fa-play"></i> Spustit hudbu</button>
+            <a href="https://www.youtube.com/watch?v=JGE378hoFGA" target="_blank" rel="noopener noreferrer" class="ig-btn ig-btn-secondary" title="Otevřít na YouTube"><i class="fa-brands fa-youtube"></i> YouTube</a>
+        </div>
+        <!-- YouTube iframe pro přehrávání na pozadí -->
+        <div class="youtube-audio-iframe-container">
+            <iframe id="youtube-audio-player" src="https://www.youtube.com/embed/JGE378hoFGA?enablejsapi=1" title="Arendelle Background Music" allow="autoplay"></iframe>
+        </div>
+    </div>
+
     <!-- MODÁLNÍ OKNO PRO PŘEHRÁVAČ A ZVUKOVÝ PANEL (INTERAKTIVNÍ POPUPY) -->
     <div id="music-modal" class="modal-overlay hidden">
         <div class="modal-container music-modal-box">
             <button class="modal-close-btn" id="close-music-modal">&times;</button>
 
             <h3><i class="fa-solid fa-music"></i> Ledový Přehrávač Arendelle</h3>
-            <p>Poslouchej ledové melodie přímo z paláce!</p>
+            <p>Poslouchej ledovou hudbu z Kouzelného lesa na pozadí!</p>
 
             <div class="music-player-widget">
-                <button id="btn-play-theme" class="ig-btn ig-btn-primary"><i class="fa-solid fa-play"></i> Přehrát ledovou melodii</button>
-                <span id="player-status" class="player-status">Zastaveno</span>
+                <button id="btn-play-theme" class="ig-btn ig-btn-primary"><i class="fa-solid fa-play"></i> Přehrát hudbu na pozadí</button>
+                <span id="player-status" class="player-status">Připraveno</span>
 
-                <div class="visualizer-bars">
+                <div class="visualizer-bars" id="music-visualizer">
                     <div class="bar"></div>
                     <div class="bar"></div>
                     <div class="bar"></div>
                     <div class="bar"></div>
                     <div class="bar"></div>
+                </div>
+
+                <div class="yt-embed-box">
+                    <iframe src="https://www.youtube.com/embed/JGE378hoFGA" title="Hudba z Arendelle" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -413,6 +457,85 @@
             <p>&copy; 2006-2025 ArendelleGram / MySpace. Vytvořeno pro Elzu z Ledového Království. ✨❄️</p>
         </div>
     </footer>
+
+    <!-- MODÁLNÍ OKNO PRO HRU: LEDOVÝ BURGER -->
+    <div id="burger-modal" class="modal-overlay hidden">
+        <div class="modal-container game-modal-box">
+            <button class="modal-close-btn" id="close-burger-modal">&times;</button>
+
+            <div class="game-modal-header">
+                <h2>🍔 Poskládej Ledový Burger pro Elzu ❄️</h2>
+                <p>Vyber ingredience a postav nejchutnější mrazivý burger v Arendelle!</p>
+            </div>
+
+            <div class="burger-game-body">
+                <div class="burger-plate-area">
+                    <div class="burger-plate">
+                        <div id="burger-stack" class="burger-stack">
+                            <div class="burger-layer layer-bottom-bun">🥖 Ledová Houska Spodní</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="burger-controls">
+                    <p class="ingredient-title">Klikni pro přidání ingredience:</p>
+                    <div class="ingredient-buttons">
+                        <button class="ing-btn" data-ingredient="patty">🥩 Ledové Maso</button>
+                        <button class="ing-btn" data-ingredient="cheese">🧀 Křišťálový Sýr</button>
+                        <button class="ing-btn" data-ingredient="pickle">🥒 Mrazivá Okurka</button>
+                        <button class="ing-btn" data-ingredient="icicle">🧊 Ostré Rampouchy</button>
+                        <button class="ing-btn" data-ingredient="sauce">❄️ Sněhová Omáčka</button>
+                        <button class="ing-btn" data-ingredient="top-bun">🥖 Ledová Houska Horní</button>
+                    </div>
+
+                    <div class="burger-action-btns">
+                        <button id="btn-serve-burger" class="ig-btn ig-btn-primary"><i class="fa-solid fa-utensils"></i> Servírovat Elze 🍔</button>
+                        <button id="btn-reset-burger" class="ig-btn ig-btn-secondary"><i class="fa-solid fa-rotate-right"></i> Smazat 🔄</button>
+                    </div>
+
+                    <div id="burger-result" class="burger-result hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODÁLNÍ OKNO PRO HRU: ELZA UTÍKÁ ZE SNĚHOVÉ VÁNICE -->
+    <div id="escape-modal" class="modal-overlay hidden">
+        <div class="modal-container game-modal-box escape-modal-box">
+            <button class="modal-close-btn" id="close-escape-modal">&times;</button>
+
+            <div class="game-modal-header">
+                <h2>❄️ Elza: Útěk ze Sněhové Vánice 🏃‍♀️</h2>
+                <p>Kliknutím nebo Stiskem [MEZERNÍKU] skakej přes ledové rokle a sbírej kouzelné vločky!</p>
+            </div>
+
+            <div class="escape-game-body">
+                <div class="escape-stats-bar">
+                    <span>Skóre: <strong id="escape-score">0</strong></span>
+                    <span>Vločky: <strong id="escape-flakes">0</strong> ❄️</span>
+                    <span>Životy: <strong id="escape-lives">❤️❤️❤️</strong></span>
+                </div>
+
+                <div id="escape-canvas-container" class="escape-canvas-container">
+                    <canvas id="escape-canvas" width="480" height="240"></canvas>
+                    <div id="escape-start-overlay" class="game-overlay-screen">
+                        <h3>❄️ Připravena na závod vánicí?</h3>
+                        <p>Použij tlačítko SKOČIT nebo MEZERNÍK na klávesnici!</p>
+                        <button id="btn-start-escape" class="ig-btn ig-btn-primary">Spustit Hru 🚀</button>
+                    </div>
+                    <div id="escape-gameover-overlay" class="game-overlay-screen hidden">
+                        <h3>❄️ Vánice tě pohltila!</h3>
+                        <p>Získané skóre: <strong id="final-score">0</strong></p>
+                        <button id="btn-restart-escape" class="ig-btn ig-btn-primary">Hrát Znovu 🔄</button>
+                    </div>
+                </div>
+
+                <div class="escape-controls">
+                    <button id="btn-jump-escape" class="ig-btn ig-btn-primary jump-big-btn">🚀 SKOČIT! (Mezerník)</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
