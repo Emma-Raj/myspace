@@ -299,6 +299,387 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 6.6 INTERAKTIVNÍ HRA: ELZA UTÍKÁ ZE SNĚHOVÉ VÁNICE
+    const escapeModal = document.getElementById('escape-modal');
+    const closeEscapeModal = document.getElementById('close-escape-modal');
+    const btnOpenEscapeNav = document.getElementById('btn-open-escape-game');
+    const highlightEscape = document.getElementById('highlight-escape-game');
+    const canvas = document.getElementById('escape-canvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+
+    const startOverlay = document.getElementById('escape-start-overlay');
+    const gameoverOverlay = document.getElementById('escape-gameover-overlay');
+    const btnStartEscape = document.getElementById('btn-start-escape');
+    const btnRestartEscape = document.getElementById('btn-restart-escape');
+    const btnJumpEscape = document.getElementById('btn-jump-escape');
+
+    const scoreEl = document.getElementById('escape-score');
+    const flakesEl = document.getElementById('escape-flakes');
+    const livesEl = document.getElementById('escape-lives');
+    const finalScoreEl = document.getElementById('final-score');
+
+    let escapeGameActive = false;
+    let animFrameId = null;
+    let score = 0;
+    let flakeCount = 0;
+    let lives = 3;
+
+    let player = {
+        x: 60,
+        y: 150,
+        w: 30,
+        h: 40,
+        vy: 0,
+        gravity: 0.7,
+        jumpPower: -12,
+        isGrounded: true
+    };
+
+    let obstacles = [];
+    let items = [];
+    let bgParticles = [];
+    let frameCounter = 0;
+
+    function openEscapeGame() {
+        if (escapeModal) escapeModal.classList.remove('hidden');
+        playIceSound('crystal-chime');
+    }
+
+    btnOpenEscapeNav?.addEventListener('click', openEscapeGame);
+    highlightEscape?.addEventListener('click', openEscapeGame);
+    closeEscapeModal?.addEventListener('click', () => {
+        escapeModal.classList.add('hidden');
+        stopEscapeGame();
+    });
+
+    function initEscapeGame() {
+        score = 0;
+        flakeCount = 0;
+        lives = 3;
+        player.y = 150;
+        player.vy = 0;
+        player.isGrounded = true;
+        obstacles = [];
+        items = [];
+        bgParticles = [];
+        frameCounter = 0;
+
+        // Vytvoření pár vloček na pozadí
+        for (let i = 0; i < 20; i++) {
+            bgParticles.push({
+                x: Math.random() * 480,
+                y: Math.random() * 240,
+                radius: Math.random() * 2 + 1,
+                speed: Math.random() * 2 + 1
+            });
+        }
+
+        updateStatsDisplay();
+    }
+
+    function updateStatsDisplay() {
+        if (scoreEl) scoreEl.textContent = score;
+        if (flakesEl) flakesEl.textContent = flakeCount;
+        if (livesEl) {
+            let hearts = '';
+            for (let i = 0; i < lives; i++) hearts += '❤️';
+            livesEl.textContent = hearts || '💀';
+        }
+    }
+
+    function doJump() {
+        if (!escapeGameActive) return;
+        if (player.isGrounded) {
+            player.vy = player.jumpPower;
+            player.isGrounded = false;
+            playIceSound('crystal-chime');
+        }
+    }
+
+    btnJumpEscape?.addEventListener('click', doJump);
+    window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && escapeModal && !escapeModal.classList.contains('hidden')) {
+            e.preventDefault();
+            doJump();
+        }
+    });
+
+    btnStartEscape?.addEventListener('click', () => {
+        startOverlay.classList.add('hidden');
+        gameoverOverlay.classList.add('hidden');
+        initEscapeGame();
+        escapeGameActive = true;
+        loopEscapeGame();
+    });
+
+    btnRestartEscape?.addEventListener('click', () => {
+        gameoverOverlay.classList.add('hidden');
+        initEscapeGame();
+        escapeGameActive = true;
+        loopEscapeGame();
+    });
+
+    function stopEscapeGame() {
+        escapeGameActive = false;
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+    }
+
+    function loopEscapeGame() {
+        if (!escapeGameActive || !ctx) return;
+
+        frameCounter++;
+        score += 1;
+        if (frameCounter % 5 === 0) updateStatsDisplay();
+
+        // Čištění plátna
+        ctx.clearRect(0, 0, 480, 240);
+
+        // Kreslení oblohy a pozadí
+        const skyGradient = ctx.createLinearGradient(0, 0, 0, 240);
+        skyGradient.addColorStop(0, '#0284c7');
+        skyGradient.addColorStop(0.6, '#38bdf8');
+        skyGradient.addColorStop(1, '#e0f2fe');
+        ctx.fillStyle = skyGradient;
+        ctx.fillRect(0, 0, 480, 240);
+
+        // Vločky na pozadí
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        bgParticles.forEach(p => {
+            p.x -= p.speed;
+            p.y += p.speed * 0.5;
+            if (p.x < 0) p.x = 480;
+            if (p.y > 240) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Kreslení země
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 190, 480, 50);
+        ctx.fillStyle = '#bae6fd';
+        ctx.fillRect(0, 190, 480, 4);
+
+        // Fyzika hráče (Elza)
+        player.vy += player.gravity;
+        player.y += player.vy;
+
+        if (player.y >= 150) {
+            player.y = 150;
+            player.vy = 0;
+            player.isGrounded = true;
+        }
+
+        // Kreslení Elzy (Postavička)
+        // Šaty
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.moveTo(player.x + 15, player.y);
+        ctx.lineTo(player.x + 30, player.y + 40);
+        ctx.lineTo(player.x, player.y + 40);
+        ctx.closePath();
+        ctx.fill();
+
+        // Hlava
+        ctx.fillStyle = '#fed7aa';
+        ctx.beginPath();
+        ctx.arc(player.x + 15, player.y - 4, 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Vlasy (Blond / Ledová korunka)
+        ctx.fillStyle = '#fef08a';
+        ctx.beginPath();
+        ctx.arc(player.x + 15, player.y - 8, 11, Math.PI, Math.PI * 2);
+        ctx.fill();
+
+        // Třpytivý plášť
+        ctx.strokeStyle = 'rgba(224, 242, 254, 0.9)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(player.x + 5, player.y + 10);
+        ctx.lineTo(player.x - 10, player.y + 35);
+        ctx.stroke();
+
+        // Generování překážek (Ledové ostny / sněhové muldy)
+        if (frameCounter % 100 === 0) {
+            obstacles.push({
+                x: 480,
+                y: 165,
+                w: 20,
+                h: 25,
+                speed: 4.5 + Math.min(score / 500, 3)
+            });
+        }
+
+        // Generování sběratelských vloček
+        if (frameCounter % 140 === 0) {
+            items.push({
+                x: 480,
+                y: 110 + Math.random() * 40,
+                w: 16,
+                h: 16,
+                speed: 4 + Math.min(score / 500, 3)
+            });
+        }
+
+        // Posun a vykreslení překážek
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+            let obs = obstacles[i];
+            obs.x -= obs.speed;
+
+            // Ledový osten (trojúhelník)
+            ctx.fillStyle = '#0284c7';
+            ctx.beginPath();
+            ctx.moveTo(obs.x + obs.w / 2, obs.y);
+            ctx.lineTo(obs.x + obs.w, obs.y + obs.h);
+            ctx.lineTo(obs.x, obs.y + obs.h);
+            ctx.closePath();
+            ctx.fill();
+
+            // Kolize s Elzou
+            if (
+                player.x < obs.x + obs.w &&
+                player.x + player.w > obs.x &&
+                player.y < obs.y + obs.h &&
+                player.y + player.h > obs.y
+            ) {
+                obstacles.splice(i, 1);
+                lives--;
+                playIceSound('frost-wave');
+                updateStatsDisplay();
+
+                if (lives <= 0) {
+                    stopEscapeGame();
+                    if (finalScoreEl) finalScoreEl.textContent = score;
+                    gameoverOverlay.classList.remove('hidden');
+                    return;
+                }
+            } else if (obs.x < -30) {
+                obstacles.splice(i, 1);
+            }
+        }
+
+        // Posun a vykreslení sběratelských vloček
+        for (let i = items.length - 1; i >= 0; i--) {
+            let item = items[i];
+            item.x -= item.speed;
+
+            ctx.font = '16px sans-serif';
+            ctx.fillText('❄️', item.x, item.y + 14);
+
+            // Kolize s vločkou
+            if (
+                player.x < item.x + item.w &&
+                player.x + player.w > item.x &&
+                player.y < item.y + item.h &&
+                player.y + player.h > item.y
+            ) {
+                items.splice(i, 1);
+                flakeCount++;
+                score += 50;
+                playIceSound('ice-sparkle');
+                updateStatsDisplay();
+            } else if (item.x < -30) {
+                items.splice(i, 1);
+            }
+        }
+
+        animFrameId = requestAnimationFrame(loopEscapeGame);
+    }
+
+    // 6.5 INTERAKTIVNÍ HRA: LEDOVÝ BURGER
+    const burgerModal = document.getElementById('burger-modal');
+    const closeBurgerModal = document.getElementById('close-burger-modal');
+    const btnOpenBurgerNav = document.getElementById('btn-open-burger-game');
+    const highlightBurger = document.getElementById('highlight-burger-game');
+    const burgerStack = document.getElementById('burger-stack');
+    const btnServeBurger = document.getElementById('btn-serve-burger');
+    const btnResetBurger = document.getElementById('btn-reset-burger');
+    const burgerResult = document.getElementById('burger-result');
+
+    let currentBurgerIngredients = ['bottom-bun'];
+
+    const ingredientLabels = {
+        'bottom-bun': { label: '🥖 Ledová Houska Spodní', class: 'layer-bottom-bun' },
+        'patty': { label: '🥩 Ledové Maso', class: 'layer-patty' },
+        'cheese': { label: '🧀 Křišťálový Sýr', class: 'layer-cheese' },
+        'pickle': { label: '🥒 Mrazivá Okurka', class: 'layer-pickle' },
+        'icicle': { label: '🧊 Ostré Rampouchy', class: 'layer-icicle' },
+        'sauce': { label: '❄️ Sněhová Omáčka', class: 'layer-sauce' },
+        'top-bun': { label: '🥖 Ledová Houska Horní', class: 'layer-top-bun' }
+    };
+
+    function openBurgerGame() {
+        if (burgerModal) burgerModal.classList.remove('hidden');
+        playIceSound('crystal-chime');
+    }
+
+    btnOpenBurgerNav?.addEventListener('click', openBurgerGame);
+    highlightBurger?.addEventListener('click', openBurgerGame);
+    closeBurgerModal?.addEventListener('click', () => burgerModal.classList.add('hidden'));
+
+    function renderBurgerStack() {
+        if (!burgerStack) return;
+        burgerStack.innerHTML = '';
+        currentBurgerIngredients.forEach(type => {
+            const info = ingredientLabels[type];
+            if (info) {
+                const layer = document.createElement('div');
+                layer.className = `burger-layer ${info.class}`;
+                layer.textContent = info.label;
+                burgerStack.appendChild(layer);
+            }
+        });
+    }
+
+    document.querySelectorAll('.ing-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const type = btn.getAttribute('data-ingredient');
+            if (currentBurgerIngredients.length >= 10) {
+                alert('🍔 Burger je už obrovský! Můžeš ho vyservírovat Elze!');
+                return;
+            }
+            currentBurgerIngredients.push(type);
+            renderBurgerStack();
+            playIceSound('ice-sparkle');
+            if (burgerResult) burgerResult.classList.add('hidden');
+        });
+    });
+
+    if (btnResetBurger) {
+        btnResetBurger.addEventListener('click', () => {
+            currentBurgerIngredients = ['bottom-bun'];
+            renderBurgerStack();
+            if (burgerResult) burgerResult.classList.add('hidden');
+            playIceSound('frost-wave');
+        });
+    }
+
+    if (btnServeBurger) {
+        btnServeBurger.addEventListener('click', () => {
+            if (!burgerResult) return;
+            const count = currentBurgerIngredients.length;
+            const hasTopBun = currentBurgerIngredients.includes('top-bun');
+            const hasPatty = currentBurgerIngredients.includes('patty');
+
+            let evaluation = '';
+            if (count === 1) {
+                evaluation = '⚠️ To je jen samotná houska! Přidej víc ledových ingrediencí!';
+            } else if (!hasTopBun) {
+                evaluation = '❄️ Skvělý start, ale nezapomeň nahoře burger přiklopit Horní Ledovou Houskou!';
+            } else if (hasPatty && hasTopBun && count >= 4) {
+                evaluation = '👑 MAGICKÝ LEDOVÝ BURGER PRO ELZU! ⭐⭐⭐⭐⭐\nElza dává 10/10 bodů! Chutná neuvěřitelně mrazivě a křupavě!';
+                triggerMagicSpell();
+            } else {
+                evaluation = '😋 Chutný mrazivý burger! Elza ti moc děkuje za skvělou svačinku!';
+                playIceSound('crystal-chime');
+            }
+
+            burgerResult.textContent = evaluation;
+            burgerResult.classList.remove('hidden');
+        });
+    }
+
     // 7. ZAVÍRÁNÍ PŘEHRÁVAČE A SOUNDBOARD MODÁLŮ
     const musicModal = document.getElementById('music-modal');
     const closeMusicModal = document.getElementById('close-music-modal');
@@ -321,6 +702,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === storyModal) storyModal.classList.add('hidden');
         if (e.target === musicModal) musicModal.classList.add('hidden');
         if (e.target === soundboardModal) soundboardModal.classList.add('hidden');
+        if (e.target === burgerModal) burgerModal.classList.add('hidden');
+        if (e.target === escapeModal) escapeModal.classList.add('hidden');
     });
 
     // 8. TLAČÍTKA LIKE A INTERAKCE PŘÍSPĚVKŮ
@@ -508,50 +891,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 12. PREHRÁVAČ MELODIE
+    // 12. PREHRÁVAČ MELODIE A HUDBY NA POZADÍ
     const playBtn = document.getElementById('btn-play-theme');
     const playerStatus = document.getElementById('player-status');
     const visualizer = document.querySelector('.visualizer-bars');
+    const bgMusicToggleBtn = document.getElementById('btn-toggle-bg-music');
+    const ytPlayerIframe = document.getElementById('youtube-audio-player');
     let isPlayingTheme = false;
     let themeInterval = null;
 
-    if (playBtn) {
-        playBtn.addEventListener('click', () => {
-            const ctx = getAudioContext();
-            if (!isPlayingTheme) {
-                isPlayingTheme = true;
-                playBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pozastavit melodii';
-                if (playerStatus) playerStatus.textContent = 'Přehrává se... ❄️';
-                if (visualizer) visualizer.classList.add('playing');
+    function toggleBackgroundMusic() {
+        const ctx = getAudioContext();
+        if (!isPlayingTheme) {
+            isPlayingTheme = true;
+            if (playBtn) playBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pozastavit hudbu';
+            if (bgMusicToggleBtn) bgMusicToggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pozastavit hudbu';
+            if (playerStatus) playerStatus.textContent = 'Přehrává se hudba... 🎵❄️';
+            if (visualizer) visualizer.classList.add('playing');
 
-                const melodyNotes = [523.25, 587.33, 659.25, 783.99, 659.25, 587.33, 523.25, 392.00];
-                let noteIdx = 0;
+            // Postulování melodie
+            const melodyNotes = [523.25, 587.33, 659.25, 783.99, 659.25, 587.33, 523.25, 392.00];
+            let noteIdx = 0;
 
-                themeInterval = setInterval(() => {
-                    if (!isPlayingTheme) return;
-                    const osc = ctx.createOscillator();
-                    const gain = ctx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(melodyNotes[noteIdx], ctx.currentTime);
-                    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
-                    osc.start(ctx.currentTime);
-                    osc.stop(ctx.currentTime + 0.45);
+            themeInterval = setInterval(() => {
+                if (!isPlayingTheme) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(melodyNotes[noteIdx], ctx.currentTime);
+                gain.gain.setValueAtTime(0.06, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.45);
 
-                    noteIdx = (noteIdx + 1) % melodyNotes.length;
-                }, 500);
+                noteIdx = (noteIdx + 1) % melodyNotes.length;
+            }, 500);
 
-            } else {
-                isPlayingTheme = false;
-                playBtn.innerHTML = '<i class="fa-solid fa-play"></i> Přehrát ledovou melodii';
-                if (playerStatus) playerStatus.textContent = 'Zastaveno';
-                if (visualizer) visualizer.classList.remove('playing');
-                if (themeInterval) clearInterval(themeInterval);
+            // Spuštění iyt<iframe> s hudbou z youtube
+            if (ytPlayerIframe) {
+                ytPlayerIframe.src = "https://www.youtube.com/embed/JGE378hoFGA?autoplay=1&enablejsapi=1";
             }
-        });
+        } else {
+            isPlayingTheme = false;
+            if (playBtn) playBtn.innerHTML = '<i class="fa-solid fa-play"></i> Přehrát hudbu na pozadí';
+            if (bgMusicToggleBtn) bgMusicToggleBtn.innerHTML = '<i class="fa-solid fa-play"></i> Spustit hudbu';
+            if (playerStatus) playerStatus.textContent = 'Zastaveno';
+            if (visualizer) visualizer.classList.remove('playing');
+            if (themeInterval) clearInterval(themeInterval);
+
+            if (ytPlayerIframe) {
+                ytPlayerIframe.src = "https://www.youtube.com/embed/JGE378hoFGA?enablejsapi=1";
+            }
+        }
     }
+
+    if (playBtn) playBtn.addEventListener('click', toggleBackgroundMusic);
+    if (bgMusicToggleBtn) bgMusicToggleBtn.addEventListener('click', toggleBackgroundMusic);
 
     // 13. PADAJÍCÍ SNĚHOVÉ VLOČKY A KURZOROVÝ TŘPYT
     createSnowflakes(35);
